@@ -10,6 +10,8 @@ class Solution(object):
         :type l1: ListNode
         :type l2: ListNode
         :rtype: ListNode
+
+        divmod() 函数把除数和余数运算结果结合起来，返回一个包含商和余数的元组
         """
         prenode = ListNode(0)
         lastnode = prenode
