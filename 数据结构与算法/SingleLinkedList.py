@@ -33,7 +33,7 @@ class SingleLinkedList(object):
         """
         count = 0
         current = self.__head
-        while current:
+        while current != None:
             count += 1
             current = current.next
         return count
@@ -43,7 +43,7 @@ class SingleLinkedList(object):
         搜索元素
         """
         current = self.__head
-        while current:
+        while current != None:
             if current.value == item:
                 return True
             else:
@@ -56,7 +56,7 @@ class SingleLinkedList(object):
         """
         current = self.__head
         print('start output: [', end=' ')
-        while current:
+        while current != None:
             print(current.value, end=' ')
             current = current.next
         print('] end out.')
@@ -107,7 +107,7 @@ class SingleLinkedList(object):
         """
         current = self.__head
         prev = None
-        while current:
+        while current != None:
             if current.value != item:
                 prev = current
                 current = current.next
