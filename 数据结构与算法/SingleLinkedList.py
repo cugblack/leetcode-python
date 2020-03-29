@@ -38,6 +38,29 @@ class SingleLinkedList(object):
             current = current.next
         return count
 
+    def search(self, item):
+        """
+        搜索元素
+        """
+        current = self.__head
+        while current:
+            if current.value == item:
+                return True
+            else:
+                current = current.next
+        return False
+
+    def travel(self):
+        """
+        输出全部元素
+        """
+        current = self.__head
+        print('start output: [', end=' ')
+        while current:
+            print(current.value, end=' ')
+            current = current.next
+        print('] end out.')
+
     def add(self, item):
         """
         头部插入节点
@@ -96,29 +119,6 @@ class SingleLinkedList(object):
                     """删除非头节点"""
                     prev.next = current.next
                 return self.travel()
-    
-    def search(self, item):
-        """
-        搜索元素
-        """
-        current = self.__head
-        while current:
-            if current.value == item:
-                return True
-            else:
-                current = current.next
-        return False
-
-    def travel(self):
-        """
-        输出全部元素
-        """
-        current = self.__head
-        print('start output: [', end=' ')
-        while current:
-            print(current.value, end=' ')
-            current = current.next
-        print('] end out.')
                 
 
 if __name__ == '__main__':
