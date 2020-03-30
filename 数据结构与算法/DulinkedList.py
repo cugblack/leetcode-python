@@ -1,32 +1,23 @@
-class SingleLinkedList(object):
-    """
-    单链表
-    """
-    class SingleNode(object):
-        """
-        初始化节点
-        """
-        def __init__(self, item):
-            self.value = item
-            self.next = None
+class Node(object):
+    def __init__(self, item):
+        self.value = item
+        self.next = None
+        self.prev = None
 
-    def __init__(self, item=None):
-        """
-        初始化链表
-        """
-        if not item:
-            self.__head = None
-        else:
-            node = self.SingleNode(item)
-            node.next = self.__head
-            self.__head = node
-    
+class DuLinkedList(object):
+    """
+    双向链表
+    """
+
+    def __init__(self):
+        self.__head = None
+
     def is_empty(self):
         """
         判断链表是否为空
         """
         return self.__head == None
-    
+
     def length(self):
         """
         输出链表长度
@@ -63,11 +54,15 @@ class SingleLinkedList(object):
 
     def add(self, item):
         """
-        头部插入节点
+        头部增加元素
         """
-        node = self.SingleNode(item)
-        node.next = self.__head
-        self.__head = node
+        node = Node(item)
+        if self.is_empty():
+            self.__head = node
+        else:
+            node.next = self.__head
+            self.__head.prev = node
+            self.__head = node
     
     def append(self, item):
         """
@@ -76,29 +71,31 @@ class SingleLinkedList(object):
         if self.is_empty():
             self.add(item)
         else:
-            node = self.SingleNode(item)
+            node = Node(item)
             current = self.__head
-            while current.next:
+            while current.next != None:
                 current = current.next
-            
             current.next = node
-    
+            node.prev = current
+
     def insert(self, idx, item):
         """
-        指定位置插入节点
+        指定位置插入
         """
-        if idx <= 0:
+        if idx <=0:
             self.add(item)
-        elif idx >= self.length():
+        elif  idx >= self.length():
             self.append(item)
         else:
-            node = self.SingleNode(item)
+            node = Node(item)
             current = self.__head
-            count = 0
-            while count < idx - 1:
+            i = 0
+            while i < idx -1:
                 current = current.next
-                count += 1
+                i += 1
+            node.prev = current
             node.next = current.next
+            current.next.prev = node
             current.next = node
     
     def remove(self, item):
@@ -106,24 +103,25 @@ class SingleLinkedList(object):
         删除元素
         """
         current = self.__head
-        prev = None
-        while current != None:
-            if current.value != item:
-                prev = current
-                current = current.next
+        if current.value == item:
+            if current.next:
+                self.__head = current.next
             else:
-                if not prev:
-                    """删除头节点"""
-                    self.__head = current.next
-                else:
-                    """删除非头节点"""
-                    prev.next = current.next
+                self.__head = None
+            return
+        
+        while current != None:
+            if current.value == item:
+                current.prev.next = current.next
+                if current.next:
+                    current.next.prev = current.prev
                 return self.travel()
-                
+            current = current.next
+            
 
 if __name__ == '__main__':
 
-    s1 = SingleLinkedList()
+    s1 = DuLinkedList()
     print(s1.is_empty())
     s1.add(5)
     s1.add(3)
@@ -133,6 +131,6 @@ if __name__ == '__main__':
     s1.append(7)
     s1.append(9)
     s1.travel()
-    print(s1.insert(3, 8))
+    s1.insert(3, 8)
     s1.travel()
     s1.remove(9)
