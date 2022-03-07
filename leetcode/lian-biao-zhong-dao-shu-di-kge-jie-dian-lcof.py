@@ -11,7 +11,7 @@ class ListNode:
         self.next = None
 
 class Solution:
-    def getKthFromEnd(self, head: ListNode, k: int) -> ListNode:
+    def getKthFromEnd(self, head: ListNode(), k: int) -> ListNode:
 
         former, later = head, head
 
