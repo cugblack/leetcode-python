@@ -1,8 +1,11 @@
+# 1. 两数之和
+# https://leetcode-cn.com/problems/two-sum/
 
 class ListNode(object):
     def __init__(self, x):
         self.val = x
         self.next = None
+
 
 class Solution(object):
     def addTwoNumbers(self, l1, l2):
@@ -25,6 +28,6 @@ class Solution(object):
         return prenode.next
 
 
-a = ListNode([1,2,3])
+a = ListNode([1, 2, 3])
 b = ListNode([902])
-print(Solution().addTwoNumbers(a,b))
+print(Solution().addTwoNumbers(a, b))

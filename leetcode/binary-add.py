@@ -1,3 +1,6 @@
+# 剑指 Offer II 002. 二进制加法
+# https://leetcode-cn.com/problems/JFETK5/
+
 class Solution:
     """
     给定两个二进制字符串，返回他们的和（用二进制表示）。

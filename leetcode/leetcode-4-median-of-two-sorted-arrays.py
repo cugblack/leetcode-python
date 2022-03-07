@@ -1,3 +1,6 @@
+# 4. 寻找两个正序数组的中位数
+# https://leetcode-cn.com/problems/median-of-two-sorted-arrays/
+
 class Solution(object):
     """
     给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。
@@ -9,6 +12,7 @@ class Solution(object):
     2.新数组长度为奇数：取 len//2 位置的值；偶数取(len//2 + len//2+1)/2.0的值
 
     """
+
     def findMedianSortedArrays(self, nums1, nums2):
         """
         :type nums1: List[int]
@@ -18,8 +22,10 @@ class Solution(object):
         if nums1 or nums2:
             nums1.extend(nums2)
             nums1.sort()
-        if len(nums1) %2 ==0:
-            return (nums1[len(nums1)//2] + nums1[len(nums1)//2 -1])/2.0
+        if len(nums1) % 2 == 0:
+            return (nums1[len(nums1) // 2] + nums1[len(nums1) // 2 - 1]) / 2.0
         else:
-            return float(nums1[len(nums1)//2])
-print(Solution().findMedianSortedArrays([1,3], [2]))
+            return float(nums1[len(nums1) // 2])
+
+
+print(Solution().findMedianSortedArrays([1, 3], [2]))

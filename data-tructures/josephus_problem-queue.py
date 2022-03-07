@@ -5,36 +5,37 @@ class Queue(object):
     进行插入操作的端称为队尾，进行删除操作的端称为队头
     队列中没有元素时，称为空队列
     """
+
     def __init__(self):
         """
         初始化队列
         """
         self.__items = []
-    
+
     def is_empty(self):
         """
         判断队列是否为空
         """
         return self.length() == 0
-    
+
     def length(self):
         """
         队列长度
         """
         return len(self.__items)
 
-
     def enqueue(self, item):
         """
         入队
         """
         self.__items.append(item)
-    
+
     def dequeue(self):
         """
         出队
         """
         return self.__items.pop(0)
+
 
 def josephus_problem(namelist, num):
     """
@@ -49,7 +50,6 @@ def josephus_problem(namelist, num):
             simqueue.enqueue(simqueue.dequeue())
         simqueue.dequeue()
     return simqueue.dequeue()
-    
 
 
 if __name__ == '__main__':
