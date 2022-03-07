@@ -1,3 +1,4 @@
+# coding: utf8
 class SingleLinkedList(object):
     """
     单链表
