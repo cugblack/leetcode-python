@@ -1,139 +1,121 @@
-# coding: utf8
-class SingleLinkedList(object):
-    """
-    单链表
-    """
-    class SingleNode(object):
-        """
-        初始化节点
-        """
-        def __init__(self, item):
-            self.value = item
-            self.next = None
+class LinkedListNode:
+    def __init__(self, value=None):
+        self.value = value
+        self.next = None
 
-    def __init__(self, item=None):
+
+class SingleLinkedList:
+    """
+    单链表 带头节点
+    """
+
+    def __init__(self):
         """
-        初始化链表
+        初始化 空节点
         """
-        if not item:
-            self.__head = None
-        else:
-            node = self.SingleNode(item)
-            node.next = self.__head
-            self.__head = node
-    
+        self.head = LinkedListNode(value=None)
+        self.head.next = None
+
     def is_empty(self):
         """
-        判断链表是否为空
+        判断： 链表是否为空
         """
-        return self.__head == None
-    
+        if self.head.next is None:
+            return True
+        return False
+
     def length(self):
         """
-        输出链表长度
+        查询： 链表长度
         """
-        count = 0
-        current = self.__head
-        while current != None:
-            count += 1
-            current = current.next
-        return count
+        cur = self.head
+        x = 0
+        while cur.next:
+            x += 1
+            cur = cur.next
+        return x
 
-    def search(self, item):
+    def search(self, value):
         """
-        搜索元素
+        查找： 任意元素
         """
-        current = self.__head
-        while current != None:
-            if current.value == item:
+        cur = self.head
+        while cur.next:
+            if cur.value == value:
                 return True
             else:
-                current = current.next
+                cur = cur.next
         return False
 
     def travel(self):
         """
-        输出全部元素
+        查询：返回链表全部元素
         """
-        current = self.__head
-        print('start output: [', end=' ')
-        while current != None:
-            print(current.value, end=' ')
-            current = current.next
-        print('] end out.')
+        cur = self.head
+        while cur.next:
+            cur = cur.next
+            print(cur.value)
 
-    def add(self, item):
+    def add(self, value):
         """
-        头部插入节点
+        插入： 从头部插入
         """
-        node = self.SingleNode(item)
-        node.next = self.__head
-        self.__head = node
-    
-    def append(self, item):
+        node = LinkedListNode(value=value)
+        node.next = self.head.next
+        self.head.next = node
+
+    def append(self, value):
         """
-        尾部追加元素
+        插入： 从尾部追加
         """
-        if self.is_empty():
-            self.add(item)
-        else:
-            node = self.SingleNode(item)
-            current = self.__head
-            while current.next:
-                current = current.next
-            
-            current.next = node
-    
-    def insert(self, idx, item):
+        node = LinkedListNode(value=value)
+        cur = self.head
+        while cur.next:
+            cur = cur.next
+        cur.next = node
+
+    def insert(self, idx, value):
         """
-        指定位置插入节点
+        插入： 从指定位置插入
         """
-        if idx <= 0:
-            self.add(item)
-        elif idx >= self.length():
-            self.append(item)
-        else:
-            node = self.SingleNode(item)
-            current = self.__head
-            count = 0
-            while count < idx - 1:
-                current = current.next
-                count += 1
-            node.next = current.next
-            current.next = node
-    
-    def remove(self, item):
-        """
-        删除元素
-        """
-        current = self.__head
-        prev = None
-        while current != None:
-            if current.value != item:
-                prev = current
-                current = current.next
+        node = LinkedListNode(value)
+        cur = self.head
+        index = 1
+        while index < idx:
+            cur = cur.next
+            index += 1
+
+        node.next = cur.next
+        cur.next = node
+
+    def remove(self, value):
+        cur = self.head
+        while cur.next:
+            if cur.next.value == value:
+                cur.next = cur.next.next
+                return True
             else:
-                if not prev:
-                    """删除头节点"""
-                    self.__head = current.next
-                else:
-                    """删除非头节点"""
-                    prev.next = current.next
-                return self.travel()
-                
+                cur = cur.next
+        return False
+
+    def reverse(self):
+        # TO DO
+        pass
+
 
 if __name__ == '__main__':
-
     s1 = SingleLinkedList()
     print(s1.is_empty())
     s1.add(5)
     s1.add(3)
     s1.add(1)
+    s1.add(6)
+    s1.append(2)
     s1.travel()
-    print(s1.length())
+    print("长度：", s1.length())
     s1.append(7)
     s1.append(9)
     s1.travel()
-    print(s1.insert(3, 8))
+    print(s1.remove(6))
+    s1.insert(3, 8)
     s1.travel()
-    s1.remove(9)
