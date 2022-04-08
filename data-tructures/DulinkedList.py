@@ -4,6 +4,7 @@ class Node(object):
         self.next = None
         self.prev = None
 
+
 class DuLinkedList(object):
     """
     双向链表
@@ -16,7 +17,7 @@ class DuLinkedList(object):
         """
         判断链表是否为空
         """
-        return self.__head == None
+        return self.__head is None
 
     def length(self):
         """
@@ -24,7 +25,7 @@ class DuLinkedList(object):
         """
         count = 0
         current = self.__head
-        while current != None:
+        while current is not None:
             count += 1
             current = current.next
         return count
@@ -34,7 +35,7 @@ class DuLinkedList(object):
         搜索元素
         """
         current = self.__head
-        while current != None:
+        while current is not None:
             if current.value == item:
                 return True
             else:
@@ -47,7 +48,7 @@ class DuLinkedList(object):
         """
         current = self.__head
         print('start output: [', end=' ')
-        while current != None:
+        while current is not None:
             print(current.value, end=' ')
             current = current.next
         print('] end out.')
@@ -63,7 +64,7 @@ class DuLinkedList(object):
             node.next = self.__head
             self.__head.prev = node
             self.__head = node
-    
+
     def append(self, item):
         """
         尾部追加元素
@@ -73,7 +74,7 @@ class DuLinkedList(object):
         else:
             node = Node(item)
             current = self.__head
-            while current.next != None:
+            while current.next is not None:
                 current = current.next
             current.next = node
             node.prev = current
@@ -82,22 +83,22 @@ class DuLinkedList(object):
         """
         指定位置插入
         """
-        if idx <=0:
+        if idx <= 0:
             self.add(item)
-        elif  idx >= self.length():
+        elif idx >= self.length():
             self.append(item)
         else:
             node = Node(item)
             current = self.__head
             i = 0
-            while i < idx -1:
+            while i < idx - 1:
                 current = current.next
                 i += 1
             node.prev = current
             node.next = current.next
             current.next.prev = node
             current.next = node
-    
+
     def remove(self, item):
         """
         删除元素
@@ -109,18 +110,17 @@ class DuLinkedList(object):
             else:
                 self.__head = None
             return
-        
-        while current != None:
+
+        while current is not None:
             if current.value == item:
                 current.prev.next = current.next
                 if current.next:
                     current.next.prev = current.prev
                 return self.travel()
             current = current.next
-            
+
 
 if __name__ == '__main__':
-
     s1 = DuLinkedList()
     print(s1.is_empty())
     s1.add(5)

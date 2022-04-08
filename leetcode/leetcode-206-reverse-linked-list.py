@@ -17,11 +17,11 @@ def reverse_list_1(head: ListNode) -> ListNode:
     return pre
 
 
-def reverse_list_2(self, head: ListNode) -> ListNode:
+def reverse_list_2(head: ListNode) -> ListNode:
     if not head or not head.next:
         return head
 
-    cur = self.reverseList(head.next)
+    cur = reverse_list_2(head.next)
     head.next.next = head
     head.next = None
     return cur
