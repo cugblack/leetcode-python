@@ -1,7 +1,7 @@
 # 9. 回文数
 # https://leetcode-cn.com/problems/palindrome-number/
 
-def is_palindrome(self, x: int) -> bool:
+def is_palindrome_1(self, x: int) -> bool:
     x = str(x)
     i = 0
     j = len(x) - 1
@@ -12,3 +12,8 @@ def is_palindrome(self, x: int) -> bool:
         else:
             return False
     return True
+
+
+def is_palindrome_2(self, x: int) -> bool:
+    x = str(x)
+    return x == x[::-1]
