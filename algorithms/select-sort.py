@@ -1,4 +1,7 @@
-def select_sort(arr):
+from typing import List
+
+
+def select_sort(arr: List[int]) -> List[int]:
     """
     选择排序，分为已排序区间和未排序区间， 每次将最大或者最小的元素移动到对已排序区间的末尾
     """

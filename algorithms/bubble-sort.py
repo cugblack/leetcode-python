@@ -1,4 +1,7 @@
-def bubble_sort(arr):
+from typing import List
+
+
+def bubble_sort(arr: List[int]) -> List[int]:
     """
     冒泡排序：比较相邻的元素。如果第一个比第二个大，
     就交换他们两个，这样每次可以把未排序空间的最大元素

@@ -1,4 +1,7 @@
-def insert_sort(arr):
+from typing import List
+
+
+def insert_sort(arr: List[int]) -> List[int]:
     """
     1、从第一个元素开始，该元素可以认为已经被排序；
     2、取出下一个元素，在已经排序的元素序列中从后向前扫描；

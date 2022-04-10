@@ -1,4 +1,7 @@
-def merge_sort(arr):
+from typing import List
+
+
+def merge_sort(arr: List[int]) -> List[int]:
     """
     把长度为n的输入序列分成两个长度为n/2的子序列；
     对这两个子序列分别采用递归的进行排序；
@@ -11,7 +14,7 @@ def merge_sort(arr):
     return merge(merge_sort(left), merge_sort(right))
 
 
-def merge(left, right):
+def merge(left: List[int], right: List[int]) -> List[int]:
     """
     将两个排序好的子序列的元素拿出来，按照顺序合并成一个最终的序列，即可完成排序
     """
