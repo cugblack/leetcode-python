@@ -1,35 +1,32 @@
-def merge(l,r):
-    """
-    数组合并并且排序
-    """
-    length = len(l) + len(r)
-    # 防止 循环length次 导致IndexError: list index out of range
-    l.append(float("inf"))
-    r.append(float("inf"))
-
-    A = []
-    i,j = 0,0
-    for k in range(length):
-        if l[i] <= r[j]:
-            A.append(l[i])
-            i += 1
-        else:
-            A.append(r[j])
-            j += 1
-    return A
-
 def merge_sort(arr):
     """
-    归并排序
+    把长度为n的输入序列分成两个长度为n/2的子序列；
+    对这两个子序列分别采用递归的进行排序；
     """
-    length = len(arr)
-    if length <= 1:
+    import math
+    if len(arr) < 2:
         return arr
-    else:
-        mid = length // 2
-        left = merge_sort(arr[0:mid])
-        right = merge_sort(arr[mid:])
-        return merge(left, right)
+    middle = math.floor(len(arr) / 2)
+    left, right = arr[0:middle], arr[middle:]
+    return merge(merge_sort(left), merge_sort(right))
 
-l1 = [3,1,4,2,6,7,9,8,10]
+
+def merge(left, right):
+    """
+    将两个排序好的子序列的元素拿出来，按照顺序合并成一个最终的序列，即可完成排序
+    """
+    result = []
+    while left and right:
+        if left[0] <= right[0]:
+            result.append(left.pop(0))
+        else:
+            result.append(right.pop(0))
+    while left:
+        result.append(left.pop(0))
+    while right:
+        result.append(right.pop(0))
+    return result
+
+
+l1 = [3, 1, 4, 2, 6, 7, 9, 8, 10]
 print(merge_sort(l1))

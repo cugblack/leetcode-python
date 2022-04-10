@@ -2,6 +2,7 @@ class BinarySearch(object):
     """
     二分查找，有序数组
     """
+
     def binary_search(self, arr, key):
         """
         简单版，无变形
@@ -21,7 +22,6 @@ class BinarySearch(object):
                 low = mid + 1
         return False
 
-
     def binary_search_1(self, arr, key):
         """
         变形1：查找第一个等于给定值的元素
@@ -34,7 +34,7 @@ class BinarySearch(object):
             mid = low + ((high - low) >> 1)
             guess = arr[mid]
             if guess == key:
-                if arr[mid-1] != guess or mid == 0:
+                if arr[mid - 1] != guess or mid == 0:
                     return mid
                 else:
                     high = mid - 1
@@ -56,12 +56,12 @@ class BinarySearch(object):
             mid = low + ((high - low) >> 1)
             guess = arr[mid]
             if guess == key:
-                if arr[mid+1] != guess or mid == len(arr) - 1:
+                if arr[mid + 1] != guess or mid == len(arr) - 1:
                     return mid
                 else:
                     low = mid + 1
             elif guess > key:
-                high = mid -1
+                high = mid - 1
             else:
                 low = mid + 1
         return False
@@ -78,9 +78,9 @@ class BinarySearch(object):
             mid = low + ((high - low) >> 1)
             guess = arr[mid]
             if guess >= key:
-                if mid == 0 or arr[mid -1] < key:
+                if mid == 0 or arr[mid - 1] < key:
                     return mid
-                high = mid -1
+                high = mid - 1
             else:
                 low = mid + 1
         return False
@@ -97,15 +97,16 @@ class BinarySearch(object):
             mid = low + ((high - low) >> 1)
             guess = arr[mid]
             if guess <= key:
-                if arr[mid+1] > guess or mid == len(arr)-1:
+                if arr[mid + 1] > guess or mid == len(arr) - 1:
                     return mid
                 else:
                     low = mid + 1
             else:
                 high = mid - 1
-        return False        
+        return False
 
-l1 = [2,4,5,7,8,10,22,22,22,22,22,22,23,25,33,44,66,77]
+
+l1 = [2, 4, 5, 7, 8, 10, 22, 22, 22, 22, 22, 22, 23, 25, 33, 44, 66, 77]
 
 # 普通二分查找
 print(BinarySearch().binary_search(l1, 22))

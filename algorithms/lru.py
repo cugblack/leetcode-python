@@ -9,6 +9,7 @@ class Node:
         self.prev = None
         self.next = None
 
+
 class LRUCache:
     # 最新数据存储在头部
     # 
@@ -27,7 +28,7 @@ class LRUCache:
 
         # 当前容量
         self.size = 0
-    
+
     def get(self, key):
         if key not in self.cache:
             return -1
@@ -55,7 +56,7 @@ class LRUCache:
         self.cache[key] = node
         self.moveToHead(node)
         return "OK"
-    
+
     def addToHead(self, node):
         node.prev = self.head
         node.next = self.head.next
@@ -65,7 +66,7 @@ class LRUCache:
     def removeNode(self, node):
         node.prev.next = node.next
         node.next.prev = node.prev
-    
+
     def removeTail(self):
         node = self.tail.prev
         self.removeNode(node)
@@ -74,9 +75,10 @@ class LRUCache:
     def moveToHead(self, node):
         self.removeNode(node)
         self.addToHead(node)
-        
+
     def get_all_keys(self):
         return self.cache.keys()
+
 
 class LRUCacheNew:
     # 最新数据存储在尾部
@@ -90,7 +92,7 @@ class LRUCacheNew:
 
         self.cache = dict()
         self.size = 0
-    
+
     def get(self, key):
         if key not in self.cache:
             return -1
@@ -128,7 +130,7 @@ class LRUCacheNew:
     def removeNode(self, node):
         node.prev.next = node.next
         node.next.prev = node.prev
-    
+
     def removeHead(self):
         node = self.head.next
         self.removeNode(node)
@@ -137,7 +139,7 @@ class LRUCacheNew:
     def moveToTail(self, node):
         self.removeNode(node)
         self.addToTail(node)
-        
+
     def get_all_keys(self):
         return self.cache.keys()
 
@@ -157,6 +159,7 @@ def test_lru_1():
     print(cache.get("name1"))
     print(cache.get_all_keys())
 
+
 def test_lru_2():
     cache = LRUCacheNew(capacity=4)
     cache.put("name1", "black1")
@@ -171,6 +174,7 @@ def test_lru_2():
     cache.put("name6", "black6")
     print(cache.get("name1"))
     print(cache.get_all_keys())
+
 
 if __name__ == "__main__":
     print("start 1---------")

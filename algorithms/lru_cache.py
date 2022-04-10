@@ -46,13 +46,13 @@ class LRUCache:
             node = self.cache[key]
             node.value = value
             self.moveToHead(node)
-    
+
     def addToHead(self, node):
         node.prev = self.head
         node.next = self.head.next
         self.head.next.prev = node
         self.head.next = node
-    
+
     def removeNode(self, node):
         node.prev.next = node.next
         node.next.prev = node.prev
@@ -65,8 +65,10 @@ class LRUCache:
         node = self.tail.prev
         self.removeNode(node)
         return node
+
     def get_all_keys(self):
         return self.cache.keys()
+
 
 cache = LRUCache(capacity=3)
 cache.put("name1", "black1")
@@ -77,6 +79,5 @@ print(cache.get("name"))
 print(cache.get("name1"))
 cache.put("name4", "black4")
 cache.put("name5", "black5")
-
 
 print(cache.get_all_keys())

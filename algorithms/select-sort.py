@@ -5,12 +5,13 @@ def select_sort(arr):
     length = len(arr)
     for i in range(length):
         min_idx = i
-        for j in range(i+1, length):
+        for j in range(i + 1, length):
             if arr[min_idx] > arr[j]:
                 min_idx = j
         arr[i], arr[min_idx] = arr[min_idx], arr[i]
         print(arr)
     return arr
 
-l1 = [23,2,4,1,6,5,8,7,10,9]
+
+l1 = [23, 2, 4, 1, 6, 5, 8, 7, 10, 9]
 print(select_sort(l1))
