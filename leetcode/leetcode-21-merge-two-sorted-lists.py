@@ -25,3 +25,14 @@ def merge_two_lists(list1: Optional[ListNode], list2: Optional[ListNode]) -> Opt
     return prev_head.next
 
 
+def merge_two_lists_2(list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+    if not list1:
+        return list2
+    elif not list2:
+        return list1
+    elif list1.val < list2.val:
+        list1.next = merge_two_lists_2(list1.next, list2)
+        return list1
+    else:
+        list2.next = merge_two_lists_2(list2.next, list1)
+        return list2
