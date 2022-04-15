@@ -1,5 +1,3 @@
-import random
-
 
 def quick_sort(arr):
     """
@@ -14,19 +12,21 @@ def quick_sort(arr):
 
 
 def patition(arr, low, high):
-    i = low - 1
+    i = low
     pivot = arr[high]
     for j in range(low, high):
         if arr[j] <= pivot:
-            i += 1
             arr[i], arr[j] = arr[j], arr[i]
-    arr[i + 1], arr[high] = arr[high], arr[i + 1]
-    return i + 1
+            i += 1
+    arr[i], arr[high] = arr[high], arr[i]
+    print(i)
+    print(arr)
+    return i
 
 
 def quick_sort_2(arr, low, high):
     if low < high:
-        pivot = patition(arr, low, high)
+        pivot = patition(arr,  low, high)
         quick_sort_2(arr, low, pivot - 1)
         quick_sort_2(arr, pivot, high)
 
