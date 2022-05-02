@@ -16,11 +16,11 @@ def longest_palindrome(s: str) -> int:
     from collections import Counter
     d = Counter(s)
     ans = 0
-    for v in d.values():
-        ans += v // 2 *2
-        if ans % 2 ==0 and v %2 ==1:
+    for i in d.values():
+        ans += i // 2 * 2
+        if ans % 2 == 0 and i % 2 == 1:
             ans += 1
-    return int(ans)
+    return ans
 
 
 if __name__ == "__main__":
